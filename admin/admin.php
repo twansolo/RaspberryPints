@@ -3,8 +3,8 @@ session_start();
 if(!isset( $_SESSION['myusername'] )){
 header("location:index.php");
 }
-
-require 'includes/conn.php';
+require '../assets/admin.class.php';
+$admin = new Admin;
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -58,7 +58,6 @@ require 'includes/conn.php';
 
         <div id="footer">
         	&copy; Copyright 2012-2014 RaspberryPints
-            
         </div> 
           </div>
 <!-- Right Side/Main Content End -->
@@ -67,11 +66,8 @@ require 'includes/conn.php';
 	     <!-- Left Dark Bar Start -->
     <div id="leftside">
 <div id="welcome"> &nbsp &nbsp Hello: &nbsp <?php
-  
-  $sql="SELECT `name` FROM `users` WHERE username='$_SESSION[myusername]'";
-  $result=mysql_query($sql);
+  $admin->hello_user($_SESSION['myusername']);
 
-echo mysql_result($result, 0, 'name');
 ?></font></div>
     	<div class="user">
         	<a href="../"><img src="img/logo.png" width="120" height="120" class="hoverimg" alt="Avatar" /></a>
