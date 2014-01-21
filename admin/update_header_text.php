@@ -1,9 +1,19 @@
 <?php
-session_start();
-if(!isset( $_SESSION['myusername'] )){
-header("location:index.php");
-}
-require 'includes/conn.php';
+    /*
+    *
+    *   Changed:    1/20/2014 
+    *   Author:     Ethan Jordan
+    *   Comments:   Added this function to the classes for admin.class.php
+    *   This function now verifies to check the session for the user to verify logged in.
+    *   If not, redirects back to the index.php.  Going to integrate it to the errors class 
+    *   in the future to ensure the user knows why they were redirected.
+    *
+    */
+    require '../assets/admin.class.php';
+    require '../assets/views.class.php';
+    $admin = new Admin;
+    $views = new Views;
+    $admin->is_logged_in();
 require '../includes/config_names.php';
 
 

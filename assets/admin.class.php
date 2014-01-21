@@ -3,6 +3,16 @@
 //Admin Functions
 
 class BaseMySQLClass {
+	/*
+	 *
+	 *	Added:		1/20/2014
+	 *	Author:		Ethan Jordan
+	 *	Comments:	This base class is an examples class that dictates when the class or extended
+	 *				class is loaded that it will load the "construct" which will auto-login to the
+	 *				specified database.  By doing this, we are able to connect to multiple dbs and keep
+	 *				it in OOP format.  Then we load other classes easilly which we can use for loops and grabbing results
+	 *
+	*/
 	public function __construct() {
 		$this->connect();
 		$this->select_db();
@@ -33,7 +43,22 @@ class BaseMySQLClass {
 	}
 }
 class Admin extends BaseMySQLClass{
+	/*
+	 *
+	 *	Added:		1/20/2014
+	 *	Author:		Ethan Jordan
+	 *	Comments:	This is an extension of our base class which will connect to the database
+	 *				Any time a query or command needs to be run multiple times or simplified for ease of use
+	 *				is to be merged into this class.
+	*/
 	public function connect() {
+		/*
+		 *
+		 *	Added:		1/20/2014
+		 *	Author:		Ethan Jordan
+		 *	Comments:	Self-Explanitory, connection
+		 *
+		*/
 		if(!$this->Connection = mysql_connect("localhost","root","EMJ0rd@n")) {
 			echo mysql_error();
 			exit;
@@ -41,14 +66,33 @@ class Admin extends BaseMySQLClass{
 	}
 
 	public function select_db() {
+		/*
+		 *
+		 *	Added:		1/20/2014
+		 *	Author:		Ethan Jordan
+		 *	Comments:	Self-Explanitory, connection
+		 *
+		*/
 		mysql_select_db("raspberrypints",$this->Connection);
 	}
 
 	public function hello_user($user){
-  		$result=mysql_query("SELECT `name` FROM `users` WHERE username='$user'");
+        /*
+        *
+        *   Changed:    1/20/2014 
+        *   Author:     Ethan Jordan
+        *   Comments:   Added this function to the classes for admin.class.php
+        *   			Pulls the customers username from the database and displays it to the page.
+        *				Merged this from prior Shawn Kemp code for ease of use.
+        *
+        */
 
-  		echo mysql_result($result, 0, 'name');
-
+        //The user variable passed in has been verified in the database and the session was created on login.
+        //However, to double check that there was no data tamper, we run checks again.
+        mysql_real_escape_string(stripslashes($user));
+        $query 	=	mysql_query("SELECT `name` FROM `users` WHERE username='$user'");
+  		$result =	mysql_fetch_object($query);
+  		echo $result->name;
 	}
 	public function check_login($username, $password){
 		$result=mysql_query("SELECT `username` FROM `users` WHERE username='$username' and password='$password'");

@@ -1,4 +1,4 @@
-<?
+<?php
     /*
     *
     *   Changed:    1/20/2014 
@@ -73,20 +73,14 @@
 	     <!-- Left Dark Bar Start -->
     <div id="leftside">
         <div id="welcome"> &nbsp &nbsp Hello: &nbsp 
-
             <?php 
-
-            /*
-            *
-            *   Changed:    1/20/2014 
-            *   Author:     Ethan Jordan
-            *   Comments:   Added this function to the classes for admin.class.php
-            *   Pulls the customers username from the database and displays it to the page.
-            *
-            */
-
-            $admin->hello_user($_SESSION['myusername']);
-
+                /*
+                 *
+                 *  For Comments on when/why added to this class
+                 *  See admin.class.php.php => Line 25
+                 *
+                */
+                $admin->hello_user($_SESSION['myusername']);
             ?>
         </div>
     
