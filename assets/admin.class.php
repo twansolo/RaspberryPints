@@ -61,6 +61,12 @@ class Admin extends BaseMySQLClass{
 			return false;
 		}
 	}
+	public function is_logged_in(){
+		session_start();
+		if(!isset( $_SESSION['myusername'] )){
+			header("location:index.php");
+		}
+	}
 	 
 
 

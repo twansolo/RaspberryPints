@@ -1,31 +1,38 @@
 <?
-session_start();
-if(!isset( $_SESSION['myusername'] )){
-header("location:index.php");
-}
-require '../assets/admin.class.php';
-$admin = new Admin;
+    /*
+    *
+    *   Changed:    1/20/2014 
+    *   Author:     Ethan Jordan
+    *   Comments:   Added this function to the classes for admin.class.php
+    *   This function now verifies to check the session for the user to verify logged in.
+    *   If not, redirects back to the index.php.  Going to integrate it to the errors class 
+    *   in the future to ensure the user knows why they were redirected.
+    *
+    */
+    require '../assets/admin.class.php';
+    require '../assets/views.class.php';
+    $admin = new Admin;
+    $views = new Views;
+    $admin->is_logged_in();
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Control Panel </title>
-<link href="styles/layout.css" rel="stylesheet" type="text/css" />
-<link href="styles/wysiwyg.css" rel="stylesheet" type="text/css" />
-<!-- Theme Start -->
-<link href="styles.css" rel="stylesheet" type="text/css" />
-<!-- Theme End -->
-<link href='http://fonts.googleapis.com/css?family=Fredoka+One' rel='stylesheet' type='text/css'>
-<style>
-
-#welcome
-{ font-family: 'Fredoka One', cursive; font-weight: 400; color: white; font-size:140% }
-
-</style>
-
-
-
+<?php 
+    /*
+    *
+    *   Added:      1/20/2014 
+    *   Author:     Ethan Jordan
+    *   Comments:   Added this function to the classes for view.class.php
+    *   This will dynamic display all of the stylesheets so that when a new one is added, it only
+    *   needs to be modified in one location
+    *
+    */
+    $views->load_admin_stylesheets();
+?>
 </head>
 <body id="homepage">
 <div id="header">
@@ -65,10 +72,25 @@ $admin = new Admin;
        
 	     <!-- Left Dark Bar Start -->
     <div id="leftside">
-<div id="welcome"> &nbsp &nbsp Hello: &nbsp <?php
-  $admin->hello_user($_SESSION['myusername']);
+        <div id="welcome"> &nbsp &nbsp Hello: &nbsp 
 
-?></font></div>
+            <?php 
+
+            /*
+            *
+            *   Changed:    1/20/2014 
+            *   Author:     Ethan Jordan
+            *   Comments:   Added this function to the classes for admin.class.php
+            *   Pulls the customers username from the database and displays it to the page.
+            *
+            */
+
+            $admin->hello_user($_SESSION['myusername']);
+
+            ?>
+        </div>
+    
+
     	<div class="user">
         	<a href="../"><img src="img/logo.png" width="120" height="120" class="hoverimg" alt="Avatar" /></a>
 
@@ -96,9 +118,9 @@ $admin = new Admin;
 			            <li>
                 <a class="expanded heading">Analytics</a>
                  <ul class="navigation">
-                    <li><a href="#" target="" title="temperature">Temperature Monitoring</a>Comming soon</li>
-                    <li><a href="#" title="GPT">Gallons Per Tap</a>Comming soon</li>
-                    <li><a href="#" title="rank">Beer Rank</a>Comming soon</li>
+                    <li><a href="#" target="" title="temperature">Temperature Monitoring</a>Coming soon</li>
+                    <li><a href="#" title="GPT">Gallons Per Tap</a>Coming soon</li>
+                    <li><a href="#" title="rank">Beer Rank</a>Coming soon</li>
                 </ul>
             </li>
 			            <li>
@@ -111,20 +133,17 @@ $admin = new Admin;
             </li>            
         </ul>
     </div>
-    <!-- Left Dark Bar End --> 
-    <script type="text/javascript" src="js/enhance.js"></script>	
-    <script type='text/javascript' src='js/excanvas.js'></script>
-	<script type='text/javascript' src='js/jquery.min.js'></script>
-    <script type='text/javascript' src='js/jquery-ui.min.js'></script>
-	<script type='text/javascript' src='scripts/jquery.wysiwyg.js'></script>
-    <script type='text/javascript' src='scripts/visualize.jQuery.js'></script>
-    <script type="text/javascript" src='scripts/functions.js'></script>
-    
-    <!--[if IE 6]>
-    <script type='text/javascript' src='scripts/png_fix.js'></script>
-    <script type='text/javascript'>
-      DD_belatedPNG.fix('img, .notifycount, .selected');
-    </script>
-    <![endif]--> 
+<?php
+    /*
+    *
+    *   Added:      1/20/2014 
+    *   Author:     Ethan Jordan
+    *   Comments:   Added this function to the classes for view.class.php
+    *   This will dynamic display all of the javascript applets so that when a new one is added, it only
+    *   needs to be modified in one location
+    *
+    */
+    $views->load_admin_javascript();
+?>
 </body>
 </html>
