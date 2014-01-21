@@ -2,7 +2,7 @@
     /*
     *
     *   Changed:    1/20/2014 
-    *   Author:     Ethan Jordan
+    *   
     *   Comments:   Added this function to the classes for admin.class.php
     *   This function now verifies to check the session for the user to verify logged in.
     *   If not, redirects back to the index.php.  Going to integrate it to the errors class 

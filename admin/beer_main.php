@@ -2,7 +2,7 @@
     /*
     *
     *   Changed:    1/20/2014 
-    *   Author:     Ethan Jordan
+    *   
     *   Comments:   Added this function to the classes for admin.class.php
     *   This function now verifies to check the session for the user to verify logged in.
     *   If not, redirects back to the index.php.  Going to integrate it to the errors class 
@@ -21,20 +21,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>RaspberryPints-Add</title>
-<link href="styles/layout.css" rel="stylesheet" type="text/css" />
-<link href="styles/wysiwyg.css" rel="stylesheet" type="text/css" />
-<!-- Theme Start -->
-<link href="styles.css" rel="stylesheet" type="text/css" />
-<!-- Theme End -->
-<link href='http://fonts.googleapis.com/css?family=Fredoka+One' rel='stylesheet' type='text/css'>
-<style>
-
-#welcome
-{ font-family: 'Fredoka One', cursive; font-weight: 400; color: white; font-size:140% }
-
-</style>
-
-
+<?php
+    $views->load_admin_stylesheets();
+?>
 </head>
 <div id="header">
     	<br />&nbsp &nbsp <input type="button" value="My Account" class="btn" onClick="location. href='Mya.php'" />

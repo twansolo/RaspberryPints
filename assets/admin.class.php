@@ -6,7 +6,7 @@ class BaseMySQLClass {
 	/*
 	 *
 	 *	Added:		1/20/2014
-	 *	Author:		Ethan Jordan
+	 *	
 	 *	Comments:	This base class is an examples class that dictates when the class or extended
 	 *				class is loaded that it will load the "construct" which will auto-login to the
 	 *				specified database.  By doing this, we are able to connect to multiple dbs and keep
@@ -46,7 +46,7 @@ class Admin extends BaseMySQLClass{
 	/*
 	 *
 	 *	Added:		1/20/2014
-	 *	Author:		Ethan Jordan
+	 *	
 	 *	Comments:	This is an extension of our base class which will connect to the database
 	 *				Any time a query or command needs to be run multiple times or simplified for ease of use
 	 *				is to be merged into this class.
@@ -55,7 +55,7 @@ class Admin extends BaseMySQLClass{
 		/*
 		 *
 		 *	Added:		1/20/2014
-		 *	Author:		Ethan Jordan
+		 *	
 		 *	Comments:	Self-Explanitory, connection
 		 *
 		*/
@@ -69,7 +69,7 @@ class Admin extends BaseMySQLClass{
 		/*
 		 *
 		 *	Added:		1/20/2014
-		 *	Author:		Ethan Jordan
+		 *	
 		 *	Comments:	Self-Explanitory, connection
 		 *
 		*/
@@ -80,7 +80,7 @@ class Admin extends BaseMySQLClass{
         /*
         *
         *   Changed:    1/20/2014 
-        *   Author:     Ethan Jordan
+        *   
         *   Comments:   Added this function to the classes for admin.class.php
         *   			Pulls the customers username from the database and displays it to the page.
         *				Merged this from prior Shawn Kemp code for ease of use.
@@ -109,10 +109,12 @@ class Admin extends BaseMySQLClass{
 		session_start();
 		if(!isset( $_SESSION['myusername'] )){
 			header("location:index.php");
+		}elseif(isset($_GET['logout'])){
+			session_destroy();
+			$uri = $_SERVER['HTTP_HOST'];
+			header("Location: http://$uri"); 
 		}
 	}
-	 
-
 
 }
 

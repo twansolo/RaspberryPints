@@ -2,7 +2,7 @@
     /*
     *
     *   Changed:    1/20/2014 
-    *   Author:     Ethan Jordan
+    *   
     *   Comments:   Added this function to the classes for admin.class.php
     *   This function now verifies to check the session for the user to verify logged in.
     *   If not, redirects back to the index.php.  Going to integrate it to the errors class 
@@ -14,7 +14,6 @@
     $admin = new Admin;
     $views = new Views;
     $admin->is_logged_in();
-
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -25,7 +24,7 @@
     /*
     *
     *   Added:      1/20/2014 
-    *   Author:     Ethan Jordan
+    *   
     *   Comments:   Added this function to the classes for view.class.php
     *   This will dynamic display all of the stylesheets so that when a new one is added, it only
     *   needs to be modified in one location
@@ -36,8 +35,11 @@
 </head>
 <body id="homepage">
 <div id="header">
-    	<br />&nbsp &nbsp <input type="button" value="My Account" class="btn" onClick="location. href='Mya.php'" />
-<input type="button" value="Logout" class="btn" onClick="location. href='includes/endses.php'"/> <a href="personalize.php" title="personalize"><img src="img/icons/gear.png" height="30" width="30" align="right"></a>&nbsp;<a href="admin.php" title="home"><img src="img/icons/home.png" height="30" width="30" align="right"></a>
+    	<br />&nbsp &nbsp 
+        <input type="button" value="My Account" class="btn" onClick="location. href='Mya.php'" />
+        <input type="button" value="Logout" class="btn" onClick="location. href='admin.php?logout=true'"/> 
+        <a href="personalize.php" title="personalize"><img src="img/icons/gear.png" height="30" width="30" align="right"></a>&nbsp;
+        <a href="admin.php" title="home"><img src="img/icons/home.png" height="30" width="30" align="right"></a>
     </div>
         
     <!-- Top Breadcrumb Start -->
@@ -131,7 +133,7 @@
     /*
     *
     *   Added:      1/20/2014 
-    *   Author:     Ethan Jordan
+    *   
     *   Comments:   Added this function to the classes for view.class.php
     *   This will dynamic display all of the javascript applets so that when a new one is added, it only
     *   needs to be modified in one location

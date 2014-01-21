@@ -15,9 +15,15 @@ if(isset($_POST['myusername']) && isset($_POST['mypassword']))
         $_SESSION['myusername'] = $myusername;
         $_SESSION['mypassword'] = $mypassword;
         echo "<script>location.href='admin.php';</script>";
-    }else{
-        //build in error checks for the different kinds of errors i.e. bad username/password
-
+    }elseif(strlen($_POST['myusername']) >= 32){
+        //Check for character length username
+        $errors = array('Error: The username you selected is too long.');
+        
+    }elseif(empty($_POST['mypassword'])){
+        if(!isset($errors)){
+            $errors = array();
+            array_push($errors, 'Error: You have not entered a password.');
+        }
     }
 
 ?>
@@ -45,7 +51,11 @@ if(isset($_POST['myusername']) && isset($_POST['mypassword']))
                 	<input type="text" class="logininput" name="myusername" placeholder="Login Name" />
                     <p>Enter your password:</p>
                 	<input type="password" class="logininput"  name="mypassword" placeholder="Password"/>
-                   
+                    <?php
+                        if(isset($errors)){
+                            print_r($errors);
+                        }
+                    ?>
                    	<input type="submit" class="loginbtn" value="Log In" /><br />
 <img src="img/lock.png" height="50" width="50">
                     <p><a href="reset_account.php" title="Forgotten Password?">Forgotten Password?</a></p>
